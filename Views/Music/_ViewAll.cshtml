@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ZingM3p.Models.MusicModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArtistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Views)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Music",new { id=0}, Context.Request.Scheme)','New Song')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Song</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MusicName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Views)
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit","Music",new { id = item.MusicId }, Context.Request.Scheme)','Update Song')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                    <form asp-action="Delete" asp-route-id="@item.MusicId" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <iframe width="600"
+            height="400"
+            seamless
+            frameBorder="0"
+            scrolling="no"
+            src="http://10.163.23.32:8088/superset/explore/p/Wd4XBwV6o7z/?standalone=1&height=400">
+    </iframe>
+</table>

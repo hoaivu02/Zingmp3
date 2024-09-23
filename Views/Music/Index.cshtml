@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ZingM3p.Models.MusicModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Music List History <i class="fas fa-music text-success"></i></h1>
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model) 
+</div>
